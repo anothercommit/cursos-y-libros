@@ -1,18 +1,24 @@
-import { useState } from "react";
-import Button from "./components/Button";
+import { useState } from 'react';
 
-export default function App() {
+function Square({ value }) {
+  return <button className="square">{value}</button>
+}
 
-  const [count, setCount] = useState(0);
+export default function Board() {
 
   function handleClick() {
-    setCount(count + 1);
+    setValue('X');
   }
 
+  const [squares, setSquares] = useState(Array(9).fill(null));
+  console.log(squares)
   return (
     <>
-      <Button count={count} onClick={handleClick} />
-      <Button count={count} onClick={handleClick} />
+      <div className="board-row">
+        {squares.forEach((square) => (
+          <Square value={square} />
+        ))}
+      </div>
     </>
-  );
+  )
 }
