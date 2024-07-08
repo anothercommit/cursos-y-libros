@@ -19,11 +19,7 @@ var reel = {
     },
 };
 var slotMachine = {
-    reels: [
-        Object.create(reel),
-        Object.create(reel),
-        Object.create(reel),
-    ],
+    reels: [Object.create(reel), Object.create(reel), Object.create(reel)],
     spin() {
         this.reels.forEach(function spinReel(reel) {
             reel.spin();
@@ -31,10 +27,11 @@ var slotMachine = {
     },
     display() {
         this.reels.forEach(function displayReel(reel) {
-            reel.display();
+            console.log(reel.display());
         });
     },
 };
+
 slotMachine.spin();
 slotMachine.display();
 // < | @ | *
