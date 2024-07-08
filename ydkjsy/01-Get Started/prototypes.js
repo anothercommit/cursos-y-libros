@@ -1,6 +1,7 @@
 function randMax(max) {
     return Math.trunc(1e9 * Math.random()) % max;
 }
+
 var reel = {
     symbols: ["X", "Y", "Z", "W", "$", "*", "<", "@"],
     spin() {
@@ -19,8 +20,9 @@ var reel = {
 };
 var slotMachine = {
     reels: [
-        // this slot machine needs 3 separate reels
-        // hint: Object.create(..)
+        Object.create(reel),
+        Object.create(reel),
+        Object.create(reel),
     ],
     spin() {
         this.reels.forEach(function spinReel(reel) {
@@ -28,7 +30,9 @@ var slotMachine = {
         });
     },
     display() {
-        // TODO
+        this.reels.forEach(function displayReel(reel) {
+            reel.display();
+        });
     },
 };
 slotMachine.spin();
