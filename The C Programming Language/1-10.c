@@ -3,7 +3,7 @@
 int main() {
   int c;
 
-  while ((c = getchar()) != 'e') {
+  while ((c = getchar()) != EOF) {
     if (c == '\t')
       printf("\\t");
     else if (c == '\n')
