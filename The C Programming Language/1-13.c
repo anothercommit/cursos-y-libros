@@ -1,8 +1,33 @@
 #include <stdio.h>
+
+#define IN 0
+#define OUT 1
+
 int main() {
-  int c, word_count;
+  int c, word_count, word_lenght;
+  word_count = word_lenght = 0;
+  int state = OUT;
+  int lenghts[100];
 
   while ((c = getchar()) != EOF) {
+    if (state == OUT && c != ' ') {
+      state = IN;
+      word_lenght = 0;
+    } else if (state == IN && c == ' ') {
+      state = OUT;
+      lenghts[word_count] = word_lenght;
+      ++word_count;
+    }
+    if (state == IN)
+      ++word_lenght;
+  }
+
+  for (int i = 0; lenghts[i] != 0; ++i) {
+    printf("%d ", lenghts[i]);
+
+    for (int j = 0; j < lenghts[i]; ++j)
+      printf("-");
+    printf("\n");
   }
 
   return 0;
