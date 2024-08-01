@@ -10,14 +10,16 @@ int main() {
   int lenghts[100];
 
   while ((c = getchar()) != EOF) {
-    if (state == OUT && c != ' ') {
+    if (state == OUT && c != ' ')
       state = IN;
-      word_lenght = 0;
-    } else if (state == IN && c == ' ') {
+
+    else if (state == IN && (c == ' ' || c == '\n')) {
       state = OUT;
       lenghts[word_count] = word_lenght;
+      word_lenght = 0;
       ++word_count;
     }
+
     if (state == IN)
       ++word_lenght;
   }
