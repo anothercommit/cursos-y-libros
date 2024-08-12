@@ -3,3 +3,4 @@ __pycache__
 
 # ignore C compiled programms
 *.out
+main
