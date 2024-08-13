@@ -1,34 +1,44 @@
 #include <stddef.h>
 #include <stdio.h>
-#define MAXLINE 20 /* maximum input line length */
+#define MAXLINE 1000 /* maximum input line length */
 
-void get_line_without_blanks(char string[MAXLINE]);
-void printline(char string[MAXLINE]);
+void my_getline(char[]);
+void remove_spaces(const char[], char[]);
 
 int main() {
-  char line[MAXLINE];
+  char line[MAXLINE], result[MAXLINE];
 
-  get_line_without_blanks(line);
-  print_line(line);
+  my_getline(line);
+  remove_spaces(line, result);
+
+  printf("%s", result);
 
   return 0;
 }
 
-void get_line_without_blanks(char string[MAXLINE]) {
-  int c, i, lastLetter, lastBlank;
+void my_getline(char string[]) {
+  int c, i;
+  for (i = 0; i < MAXLINE - 1 && (c = getchar()) != EOF && c != '\n'; ++i)
+    string[i] = c;
+  if (c == '\n') {
+    string[i] = c;
+    ++i;
+  }
+  string[i] = '\0';
+}
 
-  for (i = 0; (c = getchar()) != EOF && c != '\n' && i < MAXLINE - 2; ++i) {
-    if (c != ' ' && c != '\t')
+void remove_spaces(const char original[], char result[]) {
+  int i, lastLetter;
+
+  for (i = 0; original[i] != '\0'; ++i)
+    if (original[i] != ' ' && original[i] != '\t')
       lastLetter = i;
 
-    string[i] = c;
-  }
+  for (int c = 0; c <= lastLetter; ++c)
+    result[c] = original[c];
 
   if (lastLetter < i)
+    result[lastLetter + 1] = '\n';
 
-    if (c == '\n') {
-      string[i] = c;
-      ++i;
-      string[i] = '\0';
-    }
+  result[lastLetter + 2] = '\0';
 }
