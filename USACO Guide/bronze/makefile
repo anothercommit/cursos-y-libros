@@ -1,6 +1,6 @@
 CXX = g++
 CXXFLAGS = -std=gnu++11 -O2 -Wconversion -Wno-conversion -Wfloat-conversion -Wshadow -Wall -Wextra -pedantic-errors
-SRC = 2_mixing_mil.cpp
+SRC = speeding_ticket.cpp
 
 # Nombre del archivo ejecutable
 TARGET = main
