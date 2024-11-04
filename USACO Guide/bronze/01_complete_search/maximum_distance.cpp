@@ -1,35 +1,26 @@
-#include <cmath>
-#include <iostream>
-#include <vector>
+#include <bits/stdc++.h>
 using namespace std;
 
-struct Point {
-    int x;
-    int y;
-};
-
 int main() {
-    int N = (cin >> N, N);
-    vector<Point> points;
+    int n;
+    cin >> n;
+    vector<int> x(n), y(n);
 
-    int in;
-    for (; N > 0; --N)
-        points.push_back(Point{(cin >> in, in), (cin >> in, in)});
+    for (int &t : x)
+        cin >> t;
+    for (int &t : y)
+        cin >> t;
 
-    Point back;
-    int result = 0, distance;
-    while (points.size() > 0) {
-        back = points.back();
+    int max_squared = 0;
+    for (int i = 0; i < n; i++) {
+        for (int j = i + 1; j < n; j++) {
+            int dx = x[i] - x[j];
+            int dy = y[i] - y[j];
+            int square = dx * dx + dy * dy;
 
-        for (auto p = begin(points); p != end(points) - 1; ++p) {
-            distance = (pow(back.x, 2) - pow(p->x, 2)) +
-                       (pow(back.y, 2) - pow(p->y, 2));
-
-            if (distance > result)
-                result = distance;
+            max_squared = max(max_squared, square);
         }
-        points.pop_back();
     }
 
-    cout << result << '\n';
+    cout << max_squared << endl;
 }
