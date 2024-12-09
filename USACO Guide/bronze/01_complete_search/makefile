@@ -1,6 +1,6 @@
 CXX = g++
 CXXFLAGS = -std=gnu++11 -O2 -Wconversion -Wno-conversion -Wfloat-conversion -Wshadow -Wall -Wextra -pedantic-errors
-SRC = maximum_distance.cpp
+SRC = cow_gymnastics.cpp
 
 # Nombre del archivo ejecutable
 TARGET = main
