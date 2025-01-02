@@ -15,9 +15,14 @@ void solve() {
     int mid = (l + r) / 2;
 
     while (l < r) {
-        arr[mid] < arr[mid + 1] //
-            ? l = mid + 1
-            : r = mid;
+        if (arr[mid] < arr[mid + 1])
+            l = mid + 1;
+
+        else if (arr[mid] > arr[mid + 1])
+            break;
+
+        else
+            r = mid;
     }
 
     cout << l << endl;
@@ -27,7 +32,7 @@ int main() {
     ios::sync_with_stdio(false);
     cin.tie(nullptr);
     int t = 1;
-    cin >> t;
+    // cin >> t;
 
     cout << '\n';
 
