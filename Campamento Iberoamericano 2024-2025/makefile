@@ -1,5 +1,5 @@
 CXX = g++
-CXXFLAGS = -O3 -Wconversion -Wno-conversion -Wfloat-conversion -Wshadow -Wall -Wextra -pedantic-errors
+CXXFLAGS = -std=gnu++23 -O3 -Wconversion -Wno-conversion -Wfloat-conversion -Wshadow -Wall -Wextra -pedantic-errors
 SRC = search_peek.cpp
 
 # Nombre del archivo ejecutable

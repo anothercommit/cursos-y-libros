@@ -1,2 +1,1 @@
-- buscar el peek 
 - encontrar comienzo de lista ordenada desplazada

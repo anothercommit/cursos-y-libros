@@ -1,5 +1,4 @@
-#include <iostream>
-#include <vector>
+#include <bits/stdc++.h>
 #define rep(i, a, b) for (int i = a; i < b; ++i)
 #define ll long long
 #define ull unsigned long long
