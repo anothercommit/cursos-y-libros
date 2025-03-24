@@ -1,1 +1,0 @@
-- encontrar comienzo de lista ordenada desplazada
