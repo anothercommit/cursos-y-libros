@@ -21,16 +21,19 @@ typedef vector<db> vd;
 typedef pair<ll,ll> pp;
 
 void solve() {
-    ll N, num;
-    cin >> N >> num;
-    ll sum = num, max_sum = num;
+    ll N, Q;
+    cin >> N >> Q;
 
-    while ((cin >> num) && cin.get() != '\n'){
-        sum = max(sum + num, num); 
-        max_sum = max(max_sum, sum);
+    vv sums(N);
+    cin >> sums[0];
+    fore(i, 1, N) {
+        cin >> sums[i];
+        sums[i] += sums[i-1];
     }
 
-    cout << max_sum << endl;
+    fore(i, 0, Q){
+
+    }
 }
 
 int main() {
@@ -46,3 +49,4 @@ int main() {
 
     return EXIT_SUCCESS;
 }
+
