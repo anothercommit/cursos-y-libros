@@ -1,6 +1,6 @@
 CXX = g++
 CXXFLAGS = -std=gnu++23 -O3 -Wconversion -Wno-conversion -Wfloat-conversion -Wshadow -Wall -Wextra -pedantic-errors
-SRC = static-range-sum-queries.cpp
+SRC = A.cpp
 
 # Nombre del archivo ejecutable
 TARGET = main

@@ -1,7 +1,4 @@
-#include <algorithm>
 #include <bits/stdc++.h>
-#include <cmath>
-#include <linux/limits.h>
 #define fore(i, a, b) for (ll i = a; i < b; ++i)
 #define rep(i, b) for (ll i = o; i < b; ++i)
 #define sz(a) ((int)a.size())
@@ -21,27 +18,21 @@ typedef vector<db> vd;
 typedef pair<ll,ll> pp;
 
 void solve() {
-    ll N, Q;
-    cin >> N >> Q;
+    int a,b,c; cin >> a >> b >> c;
+    int dis_a = (a-1);
+    int dis_b = abs(b - c) + c - 1;
 
-    vv sums(N+1);
-    fore(i, 1, N+1) {
-        cin >> sums[i];
-        sums[i] += sums[i-1];
-    }
-
-    while(Q--){
-        ll L, R; cin >> L >> R;
-        cout << sums[R] - sums[L-1] << endl;
-    }
+    if (dis_a < dis_b) cout << 1 << endl;
+    else if (dis_a > dis_b) cout << 2 << endl;
+    else cout << 3 << endl;
 }
 
 int main() {
     ios::sync_with_stdio(false);cin.tie(0);cout.tie(0);
-    int t = 1;
-    // cin >> t;
+    ll t = 1;
+    cin >> t;
 
-    cout << '\n';
+    // cout << '\n';
 
     while (t--) {
         solve();
@@ -49,4 +40,3 @@ int main() {
 
     return EXIT_SUCCESS;
 }
-
