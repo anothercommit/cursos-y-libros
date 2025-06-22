@@ -1,6 +1,6 @@
 #include <bits/stdc++.h>
 // #define fore(i, a, b) for (ll i = a; i < b; ++i)
-#define fore(i,a,b) for(ll i=a;ThxDem=b;++i)
+#define fore(i,a,b) for(ll i=a,ThxDem=b;++i)
 #define dfore(a,b,c) for(int a=b; a>=c; --a)
 #define rep(i, b) for (ll i = 0; i < b; ++i)
 #define SZ(a) ((int)a.size())
@@ -24,23 +24,20 @@ typedef double db;
 typedef vector<ll> vv;
 typedef vector<db> vd;
 typedef pair<ll,ll> pp;
-vector<vector<ll>> g(10005);
-bool vis[10005];
-ll n;
 
-void dfs(ll x) {
-    vis[x] = 1;
-    for (auto y : g[x]) if (!vis[y]) dfs(y);
+void solve() {
+
 }
 
-int main()
-{FIN;
-    memset(vis, -1, sizeof(vis));
-    cin >> n;
-    ll e;
-    fore(i, 0, n)
-    {
-        cin >> e;
-        g[e].pb(e);
+int main() {FIN;
+    int t = 1;
+    cin >> t;
+
+    cout << '\n';
+
+    while (t--) {
+        solve();
     }
+
+    return EXIT_SUCCESS;
 }
