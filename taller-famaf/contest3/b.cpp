@@ -27,20 +27,11 @@ typedef vector<db> vd;
 typedef pair<ll,ll> pp;
 
 ll n,m,k;
-vector<vector<int>> dp(100, vector<int>(100, -1));
-
 
 void solve() {
     cin >> n >> m >> k;
-    bool ans;
-    if (n == 1)
-        ans = m-1 == k;
-    else if (m == 1)
-        ans = n-1 == k;
-    else
-        ans = ((n-1)*(m+1) == k || (m-1)*(n+1) == k);
 
-    cout << (ans ? "YES" : "NO") << endl;
+    cout << (n*m-1 == k ? "YES" : "NO") << endl;
 }
 
 int main() {FIN;
