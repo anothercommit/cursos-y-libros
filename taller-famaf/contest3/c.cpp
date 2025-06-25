@@ -25,29 +25,21 @@ typedef vector<ll> vv;
 typedef vector<db> vd;
 typedef pair<ll,ll> pp;
 
-int solve() {
-    ll n;
-    ll abc[3];
-    cin >> n >> abc[0] >> abc[1] >> abc[2];
-    sort(abc, abc + 3);
+int n, a, b, c;
+vector<int> vis(4000, -1);
 
-    fore (k, 0, 100000){
-        fore (i, 1, 3){
-            int rem = n-abc[i]*k;
-            if (abc[0] % rem == 0)
-                return n/abc[0] + k;
-        }
-    }
-    return 0;
+int f(int s, int ans=1) {
+    if (s == n) return ans;
+    if (s > n) return -1;
+    if (vis[s] >= ans) return -1;
+    vis[s] = ans;
+    return max({f(s+a, ans+1), f(s+b, ans+1), f(s+c, ans+1)});
 }
 
 int main() {FIN;
-    int t = 1;
-    // cin >> t;
-    // cout << '\n';
-    while (t--) {
-        cout << solve() << endl;
-    }
+    cin >> n >> a >> b >> c;
+
+    cout << max({f(a), f(b), f(c)}) << endl;
 
     return EXIT_SUCCESS;
 }
