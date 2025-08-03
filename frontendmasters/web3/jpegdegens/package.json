@@ -1,0 +1,7 @@
+{
+  "name": "jpegdegens",
+  "packageManager": "yarn@4.9.1",
+  "devDependencies": {
+    "hardhat": "^2.25.0"
+  }
+}
