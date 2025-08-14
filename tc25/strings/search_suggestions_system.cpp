@@ -1,18 +1,16 @@
 #include <iostream>
+#include <vector>
 #include <map>
-#include <stack>
 #define forr(i,a,n) for(ll i=a,ThxDem=n;i<ThxDem;++i)
 #define forn(i, n) forr(i,0,n)
 #define dfor(a,b,c) for(int a=b; a>=c; --a)
 #define fill(a) for(auto &nashe: a) cin >> nashe;
-#define filln(a,n) forr(i, 0, n) cin >> a[i];
-#define SZ(a) ((int)a.size())
-#define DGB(a) cout<<#a<<" = "<<a<<"\n"
-#define RAYA cout<<"=============="<<"\n"
-#define ALL(x) (x).begin(), (x).end()
+#define filln(a,n) forn(i, n) cin >> a[i];
+#define sz(a) ((int)a.size())
+#define dbg(a) cerr<<#a<<" = "<<a<<"\n"
+#define all(x) (x).begin(), (x).end()
 #define show(a) cout<<a<<"\n" 
 #define showAll(a) for(auto i:a) cout<<i<<" ";cout<<"\n"
-#define input(a) for(auto& i:a) cin>>i
 #define spa << ' ' <<
 #define fi first
 #define se second
@@ -30,36 +28,46 @@ typedef pair<ll,ll> pp;
 
 struct trie { 
 	map<char, trie> hijos;
-	bool term = false;
-	
+	vector<string const*> words;
+
 	void insertar(string const& s, int pos = 0) { 
-		char c = s[pos];
-		if (pos < int(s.size())) 
+		if (pos < int(s.size())) {
+			char c = s[pos];
+			if (hijos[c].words.size() < 3) 
+				hijos[c].words.push_back(&s);
 			hijos[c].insertar(s, pos+1);
-		else 
-			term = true;
-	} 
-	bool buscar(string const& s, int pos = 0) { 
-		char c = s[pos];
-		if (pos < int(s.size())) 
-			return hijos.count(c) && hijos[c].buscar(s, pos+1);
-		else 
-			return term;
+		}
 	} 
 };
 
-
-string products[] = {"mobile","mouse","moneypot","monitor","mousepad"}; 
+vector<string> products{"mobile","mouse","moneypot","monitor","mousepad"}; 
 string searchWord = "mouse";
+// vector<string> products{"havana"}; 
+// string searchWord = "havana";
 
 void solve() {
     trie t;
-    for (auto s : products) t.insertar(s);
-    stack next;
-    next.push(t.hijos.begin());
-    while (!next.empty()){
-        auto current = next.peek();
-    }
+	sort(all(products));
+    for (int i=0; i<int(products.size()); ++i){ t.insertar(products[i]);}
+	vector<vector<string> > ans(searchWord.length(), vector<string>());
+
+	int i = 0;
+	for(char c : searchWord){
+		trie next = t.hijos[c];
+
+		if (!int(next.words.size())) 
+			break;
+		for(auto w:next.words) ans[i].push_back(*w); ++i;
+
+		t = next;
+	}
+
+
+	for (auto v: ans) {
+		if (sz(v)) for(auto w:v) cout << w << ' ';
+		else cout << "-";
+		cout << '\n';
+	}
 }
 
 int main() {FIN;
