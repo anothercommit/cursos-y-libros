@@ -17,6 +17,8 @@
 #define pb push_back
 #define nl <<'\n'
 #define FIN ios::sync_with_stdio(false);cin.tie(0);cout.tie(0)
+#define max(a,b) std::max(ll(a), ll(b))
+#define min(a,b) std::min(ll(a), ll(b))
 
 using namespace std;
 typedef long long ll;
@@ -28,44 +30,34 @@ typedef pair<ll,ll> pp;
 
 ll n, x, y, c;
 
+ll bpow(ll a, ll b) {
+    ll res=1;
+    while (b>0) {
+        if (b%2==1) res *= a;
+        a*=a;
+        b/=2;
+    }
+    return res;
+}
+
 ll z(ll s){
-    // forr (i,1,s) {
-    //     ans += 4*i;
-    //     if ((out=x+i-n)>0) ans -= 2*out;
-    //     if ((out=y+i-n)>0) ans -= 2*out;
-    //     if ((out=x-i-1)<0) ans += 2*out;
-    //     if ((out=y-i-1)<0) ans += 2*out;
-    // }
-
-    // ll ans = 5 + 2*((s+2)*(s-1));
-    ll ans = 2 + s*(2*s-3);
-    return ans;
-
-    // ans += 4*s;
-    // if ((out=x+s-n)>0) ans -= out;
-    // if ((out=y+s-n)>0) ans -= out;
-    // if ((out=x-s-1)<0) ans += out;
-    // if ((out=y-s-1)<0) ans += out;
+    return 1 + 2*s*(s+1) 
+        - bpow(max(x+s-n,0),2) - bpow(max(y+s-n,0),2) 
+        - bpow(min(x-s-1,0),2) - bpow(min(y-s-1,0),2);
 }
 
 int main() {FIN;
     cin >> n >> x >> y >> c; 
-    // n = 1000000000; 
-    // x = 504951981;
-    // y = 646612086;
-    // c = 602763371;
     
-    ll left = 0;
-    ll right = 2*n;
-    while (right - left > 1){
-        ll s = (left + right) / 2;
-        if (z(s) >= c)
-            right = s;
-        else 
-            left = s;
-    }
+    // ll s=0;
+    // for (ll j=n, lim=2*n+1; j >= 1; j /= 2)
+    //     while (s+j < lim && z(s+j) <= c)
+    //         s += j;
 
-    cout << (c==1 ? 0 : right) nl;
+    // if (z(s) < c) s++;
+    // 
+    // cout << s nl;
+    cout << z(c) nl;
 
     return EXIT_SUCCESS;
 }
