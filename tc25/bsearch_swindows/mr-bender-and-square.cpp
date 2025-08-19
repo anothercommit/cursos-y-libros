@@ -30,34 +30,31 @@ typedef pair<ll,ll> pp;
 
 ll n, x, y, c;
 
-ll bpow(ll a, ll b) {
-    ll res=1;
-    while (b>0) {
-        if (b%2==1) res *= a;
-        a*=a;
-        b/=2;
-    }
-    return res;
-}
-
 ll z(ll s){
-    return 1 + 2*s*(s+1) 
-        - bpow(max(x+s-n,0),2) - bpow(max(y+s-n,0),2) 
-        - bpow(min(x-s-1,0),2) - bpow(min(y-s-1,0),2);
+    ll oxr=abs(max(x+s-n,0)), oxl=abs(min(x-s-1,0)), 
+       oyd=abs(max(y+s-n,0)), oyu=abs(min(y-s-1,0));
+
+    return 1 + 2*s*(s+1) - oyd*oyd - oyu*oyu - oxr*oxr - oxl*oxl
+        + (max(x+oyd-n, 0)*(x+oyd-n-1)
+        + min(x-oyd, 0)*(x-oyd-1)
+        + max(x+oyu-n, 0)*(x+oyu-n-1)
+        + min(x-oyu, 0)*(x-oyu-1))/2;
 }
 
 int main() {FIN;
     cin >> n >> x >> y >> c; 
     
-    // ll s=0;
-    // for (ll j=n, lim=2*n+1; j >= 1; j /= 2)
-    //     while (s+j < lim && z(s+j) <= c)
-    //         s += j;
+    ll s=0;
+    for (ll j=n, lim=2*n+1; j >= 1; j /= 2)
+        while (s+j < lim && z(s+j) <= c)
+            s += j;
 
-    // if (z(s) < c) s++;
-    // 
-    // cout << s nl;
-    cout << z(c) nl;
+    if (z(s) < c) s++;
+
+    #undef max
+    if (c == n*n) s=max({n-x+n-y, x-1+n-y, x-1+y-1,n-x+y-1});
+        
+    cout << s nl;
 
     return EXIT_SUCCESS;
 }
