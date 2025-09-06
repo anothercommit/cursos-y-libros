@@ -20,34 +20,22 @@ typedef long long ll;
 typedef vector<ll> vv;
 typedef pair<ll,ll> pp;
 
-vector<vv> adj(201);
-ll mayor1=1,mayor2=1;
-
-ll dfs(ll nodo, ll prev=-1, ll k=0){
-    if (adj[nodo].size()==1) return k;
-    for (auto vecino : adj[nodo])
-        if (vecino != prev)
-            return dfs(vecino, nodo, k+1);
-    return -1;
-}
-
 void solve(){
+    vector<vv> adj(201);
     ll n,m;cin>>n>>m;
-    ll sizes[201]={};
-    // dbg(sizes[0]);
     forn(i,m){
         ll a,b;cin>>a>>b;
         adj[a].pb(b);
         adj[b].pb(a);
-        sizes[a]++; sizes[b]++;
     }
-    forr(i,1,n+1)
-        if (sizes[i] > sizes[mayor1])
-            mayor2=mayor1, mayor1=i;
-    ll d = dfs(mayor1);
-    if (d==2) cout << sizes[mayor1] spa sizes[mayor2] nl;
-    else cout << sizes[mayor2] spa sizes[mayor1] nl;
-    forn(i,n) adj[i].clear();
+    forr(i,1,n+1){
+        if (adj[i].size()==1){
+            ll y=adj[adj[i][0]].size(); ll x=0;
+            for(auto z : adj[adj[i][0]]) x=max(ll(adj[z].size()), x);
+            cout << x spa y-1 nl;
+            break;
+        }
+    }
 }
 
 int main() {FIN;
