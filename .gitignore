@@ -1,6 +1,7 @@
 __pycache__
 .DS_Store
 node_modules/
+target/
 
 # ignore C compiled programms
 *.out
