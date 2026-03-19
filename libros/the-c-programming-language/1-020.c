@@ -1,12 +1,10 @@
-int main() {
-  char line[] = {'h', 'o', 'l', 'a', '\t', '\t', 'm', 'u', 'n', 'd', 'o'};
-}
 #include <stddef.h>
 #include <stdio.h>
 #define MAXLINE 1000 /* maximum input line length */
 
 void my_getline(char[]);
 void remove_spaces(const char[], char[]);
+char line[] = {'h', 'o', 'l', 'a', '\t', '\t', 'm', 'u', 'n', 'd', 'o'};
 
 int main() {
   char line[MAXLINE], result[MAXLINE];
