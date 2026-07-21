@@ -26,25 +26,24 @@ typedef vector<ll> vv;
 typedef vector<ld> vd;
 typedef pair<ll,ll> pp;
 
-ll n;
+ll n, k;
 ll h[100005];
 ll dp[100005];
 
 ll f(ll x){
     ll &res=dp[x];
-    if (res >= 0) return res; 
+    if (res > -1) return res; 
     if (x==n-1) return 0;
-    if (x==n-2) return abs(h[n-1] - h[n-2]);
 
-    res = min(
-        f(x+1) + abs(h[x] - h[x+1]),
-        f(x+2) + abs(h[x] - h[x+2])
-    );
+    res = 1e4;
+    for (ll i=1; x+i<n && i<=k; i++)
+        res = min(res, f(x+i) + abs(h[x]-h[x+i]));
+
     return res;
 }
 
 int main() {FIN;
-    cin >> n;
+    cin >> n >> k;
     forn(i, n) cin >> h[i];
     memset(dp, -1, sizeof(dp));
     cout << f(0) << endl;
